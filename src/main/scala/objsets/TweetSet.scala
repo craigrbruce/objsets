@@ -141,14 +141,7 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   override def mostRetweeted: Tweet = {
     def loop(t: Tweet): Tweet = {
-      if(!left.isEmpty && !right.isEmpty){
-        val leftMost = left.mostRetweeted;
-        val rightMost = right.mostRetweeted;
-        if(elem.retweets > leftMost.retweets && elem.retweets > rightMost.retweets) elem
-        else if(leftMost.retweets > rightMost.retweets) leftMost
-        else rightMost
-      }
-      else if (!left.isEmpty && left.mostRetweeted.retweets > t.retweets) left.mostRetweeted
+      if (!left.isEmpty && left.mostRetweeted.retweets > t.retweets) left.mostRetweeted
       else if (!right.isEmpty && right.mostRetweeted.retweets > t.retweets) right.mostRetweeted
       else t
     }
